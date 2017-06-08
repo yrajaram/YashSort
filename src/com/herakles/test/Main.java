@@ -9,6 +9,7 @@ package com.herakles.test;
 import java.util.HashMap;
 import java.util.HashSet;
 
+
 public class Main {
     public static void main(String[] args) {
         int arr[] = {2,78,4,65,11,3,30,7,25,6};
@@ -18,6 +19,7 @@ public class Main {
         printArray(arr);
         
         System.arraycopy(arr,0, arr2, 0, arr.length);
+
         arr2 = bubbleSort(arr2);
         System.out.print("After bubble sort:\t");
         printArray(arr2);
@@ -48,7 +50,7 @@ public class Main {
         }
         return(ip);
     }
-    
+   
     // Handle duplicates
     private static int[] yashSort2(int[] ip) {
         HashMap<Integer, Integer> h = new HashMap<Integer, Integer>();
@@ -91,6 +93,41 @@ public class Main {
 
         int tmp =0;
         for (int i = min; i <= max; i++) {
+            if (h.contains(Integer.valueOf(i))) {
+                    ip[tmp++] = i;
+            }
+        }
+        return(ip);
+    }
+    
+    // Handle gaps
+    private static int[] yashSort3(int[] ip) {
+        HashSet<Integer> h = new HashSet<Integer>();
+        int min = Integer.MAX_VALUE;
+        int oldMin = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        int oldMax = Integer.MIN_VALUE;
+        
+        for (int i = 0; i < ip.length; i++) {
+            if (min > ip[i]) min = ip[i];
+            if ((ip[i] > min) && (ip[i] < oldMin)) {
+            	oldMin = ip[i];
+            }
+            if (max < ip[i]) max = ip[i];
+            if ((ip[i] < max) && (ip[i] > oldMax)) {
+            	oldMax = ip[i];
+            }
+
+            h.add(Integer.valueOf(ip[i]));
+        }
+
+        int tmp = 2;
+        ip[0] = min;
+        ip[1] = oldMin;
+        ip[ip.length-2] = oldMax;
+        ip[ip.length-1] = max;
+        
+        for (int i = oldMin+1; i < oldMax-1; i++) {
             if (h.contains(Integer.valueOf(i))) {
                     ip[tmp++] = i;
             }
