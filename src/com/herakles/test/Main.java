@@ -78,6 +78,7 @@ public class Main {
             }
         }
         return(ip);
+
     }
     
     private static int[] yashSort(int[] ip) {
@@ -131,6 +132,7 @@ public class Main {
             if (h.contains(Integer.valueOf(i))) {
                     ip[tmp++] = i;
             }
+            if (tmp==(ip.length-2)) break;
         }
         return(ip);
     }
