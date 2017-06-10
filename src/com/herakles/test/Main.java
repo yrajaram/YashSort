@@ -56,6 +56,48 @@ public class Main {
         System.out.printf("%d nano sec\n",end-start);
         return(ip);
     }
+	
+private static int[] quickSort(int[] ip) {
+        start = System.nanoTime();
+        quickSort0(ip, 0, ip.length-1);
+        end = System.nanoTime();
+        System.out.printf("%d nano sec\n",end-start);
+        return(ip);
+    }
+    
+    private static int partition(int arr[], int left, int right) { 
+    	int i = left, j = right; 
+    	int tmp; 
+    	int pivot = arr[(left + right) / 2]; 
+
+    	while (i <= j) { 
+    		while (arr[i] < pivot) 
+    			i++; 
+
+    		while (arr[j] > pivot) 
+    			j--; 
+
+    		if (i <= j) { 
+    			tmp = arr[i]; 
+    			arr[i] = arr[j]; 
+    			arr[j] = tmp; 
+    			i++; 
+    			j--; 
+    		} 
+    	}; 
+
+    	return i; 
+    } 
+
+    private static void quickSort0(int arr[], int left, int right) { 
+    	int index = partition(arr, left, right); 
+
+    	if (left < index - 1) 
+    		quickSort0(arr, left, index - 1); 
+
+    	if (index < right) 
+    		quickSort0(arr, index, right); 
+    }
    
     // Handle duplicates
     private static int[] yashSort2(int[] ip) {
