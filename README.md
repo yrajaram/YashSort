@@ -14,11 +14,14 @@ Here is a comparision I made with BubbleSort and QuickSort - YashSort stacks up 
 
 Provided input values:	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 ... 99 
 
-130,052 nano sec
+BubbleSort took: 130,052 nano sec
+
 After bubble sort:	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 ... 99 
 
-12,308 nano sec
+YashSort took: 12,308 nano sec
+
 After Yash sort:	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 ... 99 
 
-28,718 nano sec
+QuickSort took: 28,718 nano sec
+
 After quick sort:	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 ... 99
