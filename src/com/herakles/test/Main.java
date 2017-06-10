@@ -232,7 +232,8 @@ private static int[] quickSort(int[] ip) {
             b[index] = (byte) (b[index] | mask) ;
         }
         
-        for (int i = 0; i < b.length; i++) {        	
+        for (int i = 0; i < b.length; i++) {      
+        	if (b[i]!=0)
 			for (byte j = 0; j < Byte.SIZE; j++) {
 				mask = (b[i]&(1<<j));
 				if (mask >0) {
@@ -240,6 +241,7 @@ private static int[] quickSort(int[] ip) {
 				}
 			}
 		}
+        
 		
         end = System.nanoTime();
         System.out.printf("%d nano sec\n",end-start);
