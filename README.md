@@ -9,7 +9,7 @@ Contrast this with Bubble Sort which with perform in O(100) if 10 elements are i
 
 (I know this is not how big O should be used but explaining in this way highlights the nature of this algorithm well.)
 
-## comparison
+## Comparison
 Here is a comparision I made with BubbleSort and QuickSort - YashSort stacks up pretty well. [The inputs did not have any duplicate values and the inpuit values were between 0 and 99 (inclusive of both)]
 
 Provided input values:	0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 ... 99 
