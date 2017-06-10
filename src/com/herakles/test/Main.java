@@ -12,7 +12,9 @@ import java.util.HashSet;
 
 public class Main {
     public static void main(String[] args) {
-        int arr[] = {2,78,4,65,11,3,30,7,25,6};
+        private static long start, end;
+
+        int arr[] = {0,2,78,44,65,11,33,30,7,25,6, 15, 21, 45, 99, 32, 13, 50, 81, 3,79,43,64,10,34,29,8,24,5, 14, 20};
         int arr2[] = new int[arr.length];
         
         System.out.print("Provided input values:\t");
@@ -81,7 +83,7 @@ public class Main {
 
     }
     
-    private static int[] yashSort(int[] ip) {
+    private static int[] yashSort1(int[] ip) {
         HashSet<Integer> h = new HashSet<Integer>();
         int min = 0, max = 0;
         
@@ -134,6 +136,67 @@ public class Main {
             }
             if (tmp==(ip.length-2)) break;
         }
+        return(ip);
+    }
+    
+    // Using BitSet
+    private static int[] yashSort(int[] ip) {
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        BitSet bb = new BitSet();
+        int tmp = 0;
+        
+        start = System.nanoTime();
+
+        for (int i = 0; i < ip.length; i++) {
+
+            if (min > ip[i]) min = ip[i];
+            if (max < ip[i]) max = ip[i];
+            
+            bb.set(ip[i]);
+        }
+
+        for (int i = 0; i < bb.length(); i++) {
+        	if (bb.get(i))	ip[tmp++] = i;
+		}
+
+        end = System.nanoTime();
+        System.out.printf("%d nano sec\n",end-start);
+        
+        return(ip);
+    }
+    
+    private static int[] yashSort(int[] ip) {
+    	byte[] b = new byte[14]; //to sort numbers in range 0-100
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        int index = 0, mask = 0, tmp = 0;
+        
+        start = System.nanoTime();
+
+        for (int i = 0; i < ip.length; i++) {
+
+            if (min > ip[i]) min = ip[i];
+            if (max < ip[i]) max = ip[i];
+            
+            index = ip[i]/Byte.SIZE;
+            mask = 1<<(ip[i]%Byte.SIZE);
+        
+            b[index] = (byte) (b[index] | mask) ;
+        }
+        
+        for (int i = 0; i < b.length; i++) {        	
+			for (byte j = 0; j < Byte.SIZE; j++) {
+				mask = (b[i]&(1<<j));
+				if (mask >0) {
+					ip[tmp++]=i*Byte.SIZE+j;
+				}
+			}
+		}
+		
+        end = System.nanoTime();
+        System.out.printf("%d nano sec\n",end-start);
+        
         return(ip);
     }
 }
