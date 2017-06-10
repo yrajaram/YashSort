@@ -6,13 +6,15 @@
  */
 package com.herakles.test;
 
+import java.util.BitSet;
 import java.util.HashMap;
 import java.util.HashSet;
 
 
 public class Main {
+    private static long start, end;
+
     public static void main(String[] args) {
-        private static long start, end;
 
         int arr[] = {0,2,78,44,65,11,33,30,7,25,6, 15, 21, 45, 99, 32, 13, 50, 81, 3,79,43,64,10,34,29,8,24,5, 14, 20};
         int arr2[] = new int[arr.length];
@@ -40,7 +42,7 @@ public class Main {
     }
     
     private static int[] bubbleSort(int[] ip) {
-        
+        start = System.nanoTime();
         for (int i = 0; i < ip.length; i++) {
             for(int j = i+1; j < ip.length; j++) {
                 if (ip[i] > ip[j]) {
@@ -50,6 +52,8 @@ public class Main {
                 } 
             }
         }
+        end = System.nanoTime();
+        System.out.printf("%d nano sec\n",end-start);
         return(ip);
     }
    
@@ -139,8 +143,8 @@ public class Main {
         return(ip);
     }
     
-    // Using BitSet
-    private static int[] yashSort(int[] ip) {
+    // Using BitSet to avoid hashset
+    private static int[] yashSort5(int[] ip) {
         int min = Integer.MAX_VALUE;
         int max = Integer.MIN_VALUE;
         BitSet bb = new BitSet();
@@ -166,6 +170,7 @@ public class Main {
         return(ip);
     }
     
+    // Assumption: no duplicates in input and inputs in the range 0-100 (for now, will improve later) 
     private static int[] yashSort(int[] ip) {
     	byte[] b = new byte[14]; //to sort numbers in range 0-100
         int min = Integer.MAX_VALUE;
